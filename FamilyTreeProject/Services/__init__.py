@@ -1,0 +1,1 @@
+from .persona_service import select_all_personas_service
