@@ -18,8 +18,11 @@ def navbar_dropdown() -> rx.Component:
                         height="auto",
                         border_radius="25%",
                     ),
-                    rx.heading(
-                        "Reflex", size="7", weight="bold"
+                    rx.link(
+                        rx.heading(
+                            "Reflex", size="7", weight="bold"
+                        ),
+                        href="/",
                     ),
                     align_items="center",
                 ),
@@ -45,6 +48,7 @@ def navbar_dropdown() -> rx.Component:
                             rx.menu.item("Service 3"),
                         ),
                     ),
+                    navbar_link("About", "/about"),
                     navbar_link("Register", "/register"),
                     navbar_link("Log in", "/#"),
                     justify="end",
@@ -52,6 +56,7 @@ def navbar_dropdown() -> rx.Component:
                 ),
                 justify="between",
                 align_items="center",
+                id='my-navbar-hstack-desktop'
             ),
         ),
         rx.mobile_and_tablet(
@@ -98,4 +103,5 @@ def navbar_dropdown() -> rx.Component:
         # top="0px",
         # z_index="5",
         width="100%",
+        id="my-main-nav",
     )

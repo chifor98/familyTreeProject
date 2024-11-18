@@ -1,1 +1,0 @@
-from .persona_repository import select_all

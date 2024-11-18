@@ -18,7 +18,7 @@ def signup_default() -> rx.Component:
                     width="100%",
                 ),
                 direction="column",
-                spacing="5",
+                spacing="5",              
                 width="100%",
             ),
             rx.vstack(

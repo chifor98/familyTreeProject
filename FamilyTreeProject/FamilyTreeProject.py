@@ -1,34 +1,21 @@
 import reflex as rx
 from rxconfig import config
-from .pages.navbar import navbar_dropdown
-
+from .ui.navbar import navbar_dropdown
+from .ui.base import base_page
+from . import pages
 
 class State(rx.State):
-    count: int = 0
-
-    def increment(self):
-        self.count += 1
-
-    def decrement(self):
-        self.count -= 1
-def navbar() -> rx.Component:
-    return navbar_dropdown()
-
-
-def base_page(child: rx.Component, hide_navbar=False, *args, **kwargs) -> rx.Component:
-    print([type(x) for x in args])
-    return rx.container(
-        navbar(),
-        child,
-        rx.logo(),
-        rx.color_mode.button(position="bottom-left"),
-    )
-
+     """ The app state."""
+     label= "Welcome to Reflex!"
+     
+     def handle_title_input_change(self, val):
+         self.label = val
+     def did_click(self):
+         print("Hello world did click")
+         
 def index() -> rx.Component:
-    return base_page(
-        rx.vstack(
-        )
-    )
+    return base_page(rx.vstack())
 
 app = rx.App()
 app.add_page(index)
+app.add_page(pages.about_page, route='/about')
