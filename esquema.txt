@@ -1,0 +1,52 @@
+FamilyTreeProject/
+├── FamilyTreeProject/           # Directorio principal de la aplicación Reflex
+│   ├── __init__.py
+│   ├── Components/              # Componentes UI reutilizables
+│   │   ├── __init__.py
+│   │   ├── navbar.py            # Barra de navegación (con estado login/logout)
+│   │   ├── person_form.py       # Formulario base para datos de persona (reutilizable)
+│   │   └── tree_node.py         # (Avanzado) Componente para un nodo del árbol visual
+│   ├── Models/                  # Modelos de datos (SQLModel/rx.Model)
+│   │   ├── __init__.py
+│   │   ├── user_model.py        # Modelo para Usuarios (login, email, password hash)
+│   │   ├── persona_model.py     # Modelo para Personas (datos genealógicos, FK a User, padres)
+│   │   └── approval_model.py    # Modelo para registrar aprobaciones de personas fallecidas
+│   ├── pages/                   # Funciones de página (@rx.page)
+│   │   ├── __init__.py          # Importa TODAS las funciones de página
+│   │   ├── index.py             # Página principal (quizás redirige a login o dashboard)
+│   │   ├── login.py             # Página de inicio de sesión
+│   │   ├── register.py          # Página de registro de usuario
+│   │   ├── dashboard.py         # Panel principal del usuario logueado
+│   │   ├── profile.py           # Página para ver/editar perfil propio o añadir/editar fallecido
+│   │   ├── tree_view.py         # Página para visualizar el árbol genealógico
+│   │   │── approvals.py         # Página para gestionar aprobaciones pendientes
+│   │   ├── # --- NUEVAS SUGERENCIAS ---
+│   │   ├── password_reset.py    # Flujo para solicitar y restablecer contraseña olvidada
+│   │   ├── user_settings.py     # Página para que el usuario cambie su email, contraseña actual, etc.
+│   │   ├── search_results.py    # Página para mostrar resultados de búsqueda de personas en el árbol
+│   │   ├── view_person.py       # Página de solo lectura para ver detalles de una persona específica (útil al hacer clic en el árbol)
+│   │   ├── notifications.py     # Página para mostrar notificaciones (ej. nuevas solicitudes de aprobación, aprobaciones completadas)
+│   │   ├── invite.py            # (Opcional) Página para invitar a otros familiares a unirse por email
+│   │   └── help_faq.py          # (Opcional) Página estática con ayuda o preguntas frecuentes
+│   ├── Services/                # Lógica de negocio y acceso a DB
+│   │   ├── __init__.py
+│   │   ├── auth_service.py      # Funciones para registro, login, verificación password
+│   │   ├── persona_service.py   # Funciones CRUD para Personas, buscar padres/hijos
+│   │   ├── approval_service.py  # Funciones para crear/gestionar aprobaciones
+│   │   └── tree_service.py      # Funciones para obtener datos estructurados para el árbol
+│   ├── State/                   # Estados de Reflex (rx.State)
+│   │   ├── __init__.py
+│   │   ├── base_state.py        # Estado base (compartido), podría manejar info del usuario logueado
+│   │   ├── auth_state.py        # Estado para formularios de login/registro
+│   │   ├── profile_state.py     # Estado para el formulario de perfil/persona
+│   │   ├── tree_state.py        # Estado para manejar datos y lógica de visualización del árbol
+│   │   └── approval_state.py    # Estado para la página de aprobaciones
+│   ├── utils/                   # Funciones de utilidad (ej. hashing passwords)
+│   │   ├── __init__.py
+│   │   └── security.py          # Funciones para hashear y verificar contraseñas
+│   └── FamilyTreeProject.py     # Punto de entrada principal (crea la app rx.App)
+├── assets/                      # Archivos estáticos (CSS, imágenes, JS si es necesario)
+│   └── logo.jpg                 # (Ejemplo)
+├── requirements.txt             # Dependencias del proyecto (Reflex, pymysql, cryptography, passlib)
+├── rxconfig.py                  # Configuración de Reflex (app_name, db_url)
+└── .env                         # (Opcional pero recomendado) Para guardar secretos como la contraseña de DB

@@ -1,17 +1,20 @@
 import reflex as rx
-import reflex_local_auth
+#import reflex_local_auth
 from . import routes
 
 class NavState(rx.State):
     def to_home(self):
         return rx.redirect(routes.HOME_ROUTE)
 
-    def to_register(self):
-        return rx.redirect(reflex_local_auth.routes.REGISTER_ROUTE)
-    
-    def to_login(self):
-        return rx.redirect(reflex_local_auth.routes.LOGIN_ROUTE)
-    
+    # ... dentro de la clase NavState ...
+    def to_register_page(self):
+        return rx.redirect(routes.REGISTER_LIST_ROUTE)
+
+    def to_login_page(self):
+        # Asumiendo LOGIN_ROUTE = "/login" en routes.py
+        login_route = getattr(routes, 'LOGIN_ROUTE', '/login')
+        return rx.redirect(login_route)
+
     def to_logout(self):
         return rx.redirect(routes.LOGOUT_ROUTE)
 
@@ -31,4 +34,7 @@ class NavState(rx.State):
         return rx.redirect(routes.CONTACT_US_ROUTE)
     def to_pricing(self):
         return rx.redirect(routes.PRICING_ROUTE)
+    # ------
+    def to_personas(self):
+        return rx.redirect(routes.PERSONAS_LIST_ROUTE)
     

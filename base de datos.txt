@@ -1,0 +1,35 @@
++-----------------------+        +--------------------------+        +-------------------------+
+|        users          |        |         personas         |        |        approvals        |
++-----------------------+        +--------------------------+        +-------------------------+
+| id (PK)               |------->| persona_id (FK, U, NULL)|        | id (PK)                 |
+| email (U)             |        |                          |------->| persona_id (FK)         |
+| hashed_password       |        | id (PK)                  |        | requester_user_id (FK)  |<-+
+| is_active             |        | nombre                   |        | approver_user_id (FK)   |<-+
+| created_at            |        | apellidos                |        | status (ENUM)           |  |
+| updated_at            |        | fechaNacimiento (NULL)   |        | created_at              |  |
+| persona_id (FK,U,NULL)|---+    | fechaDefuncion (NULL)    |        | updated_at              |  |
++-----------------------+   |    | sexo (NULL)              |        | (U: persona_id,         |  |
+                            |    | is_deceased              |        |     approver_user_id)   |  |
+                            |    | is_approved              |        +-------------------------+  |
+                            |    | padre_id (FK, self, NULL)|--+                                  |
+                            |    | madre_id (FK, self, NULL)|--+                                  |
+                            +----| created_by_user_id (FK)  |-------------------------------------+
+                                 | created_at               |
+                                 | updated_at               |
+                                 +--------------------------+
+                                   ^      ^      |
+                                   |      |      |
+                                   +------+------+
+                                    (padre/madre)
+
+
+Relaciones Clave:
+-----------------
+*   users.persona_id --> personas.id (Un usuario representa 0 o 1 persona)
+*   personas.created_by_user_id --> users.id (Una persona fue creada por 0 o 1 usuario)
+*   personas.padre_id --> personas.id (Relación Padre)
+*   personas.madre_id --> personas.id (Relación Madre)
+*   approvals.persona_id --> personas.id (Aprobación para una persona)
+*   approvals.requester_user_id --> users.id (Usuario que solicita aprobación)
+*   approvals.approver_user_id --> users.id (Usuario que debe aprobar)
+

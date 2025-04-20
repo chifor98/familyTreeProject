@@ -7,3 +7,4 @@ CONTACT_US_ROUTE="/contact"
 CONTACT_ENTRIES_ROUTE="/contact/entries"
 LOGOUT_ROUTE="/logout"
 PRICING_ROUTE="/pricing"
+PERSONAS_LIST_ROUTE="/personas" #Añadir para que se vea la página, es una ruta
